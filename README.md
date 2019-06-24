@@ -48,7 +48,7 @@ Note that there are some differences from the videos that you will need to work 
 
 The image below links to a [video](https://youtu.be/szX3l1C50fA) of a sample execution of the program solution.
 
-[![Video of program solution in action](http://img.youtube.com/vi/-szX3l1C50fA/0.jpg)](https://youtu.be/szX3l1C50fA)
+[![Video of program solution in action](https://img.youtube.com/vi/szX3l1C50fA/0.jpg)](https://youtu.be/szX3l1C50fA)
 
 ## Additional Files:
 
