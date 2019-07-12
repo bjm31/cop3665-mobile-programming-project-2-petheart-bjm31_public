@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 import com.example.petheart.Models.Memory;
@@ -39,7 +40,7 @@ public class MemoryFragment extends Fragment {
     private Memory mMemory;
     private EditText mTitleField;
     private Button mDateButton;
-    private ToggleButton mFavoriteButton;
+    private Switch mFavoriteSwitch;
 
     public static MemoryFragment newInstance(UUID memoryID)
     {
@@ -94,9 +95,9 @@ public class MemoryFragment extends Fragment {
             }
         });
 
-        mFavoriteButton = v.findViewById(R.id.memory_favorite);
-        mFavoriteButton.setChecked(mMemory.isFavorite());
-        mFavoriteButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mFavoriteSwitch = v.findViewById(R.id.memory_favorite);
+        mFavoriteSwitch.setChecked(mMemory.isFavorite());
+        mFavoriteSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mMemory.setFavorite(b);

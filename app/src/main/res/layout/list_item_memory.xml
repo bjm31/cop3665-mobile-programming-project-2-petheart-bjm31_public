@@ -42,7 +42,7 @@
         tools:layout_conversion_wrapWidth="185" />
 
     <ImageView
-        android:id="@+id/memory_favorite_solved"
+        android:id="@+id/memory_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -51,6 +51,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_memory" />
+        app:srcCompat="@drawable/ic_menu_favorites" />
 
 </android.support.constraint.ConstraintLayout>

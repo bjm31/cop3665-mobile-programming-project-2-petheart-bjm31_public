@@ -16,9 +16,9 @@ public class MemoryCursorWrapper extends CursorWrapper {
 
     public Memory getMemory()
     {
-        String uuidString = getString(getColumnIndex(MemoryDbSchema.CrimeTable.Cols.UUID));
-        String title = getString(getColumnIndex(MemoryDbSchema.CrimeTable.Cols.TITLE));
-        long date = getLong(getColumnIndex(MemoryDbSchema.CrimeTable.Cols.DATE));
+        String uuidString = getString(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.UUID));
+        String title = getString(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.TITLE));
+        long date = getLong(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.DATE));
 
         Memory memory = new Memory(UUID.fromString(uuidString));
         memory.setTitle(title);

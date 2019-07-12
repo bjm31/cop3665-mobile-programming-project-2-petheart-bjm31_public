@@ -6,18 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <TextView
         style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/memory_title_label"/>
 
-    <ToggleButton
+    <Switch
         android:id="@+id/memory_favorite"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/memory_favorite_label"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/memory_title"
