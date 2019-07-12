@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PetHeart</string>
+    <string name="memory_title_hint">Enter a title for the memory.</string>
+    <string name="memory_title_label">Title</string>
+    <string name="memory_details_label">Details</string>
+    <string name="memory_favorite_label">Favorite</string>
+    <string name="date_picker_title">Date of crime:</string>
+    <string name="new_memory">New Memory</string>
+    <string name="delete_memory">Delete Memory</string>
+</resources>
