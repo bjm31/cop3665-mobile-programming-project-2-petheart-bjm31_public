@@ -14,8 +14,8 @@ public class MemoryCursorWrapper extends CursorWrapper {
         super(cursor);
     }
 
-    public Memory getMemory()
-    {
+    public Memory getMemory() {
+
         String uuidString = getString(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.UUID));
         String title = getString(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.TITLE));
         long date = getLong(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.DATE));
@@ -25,6 +25,5 @@ public class MemoryCursorWrapper extends CursorWrapper {
         memory.setDate(new Date(date));
 
         return memory;
-
     }
 }

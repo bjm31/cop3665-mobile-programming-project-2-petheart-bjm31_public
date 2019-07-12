@@ -9,6 +9,8 @@ public class MemoryDbSchema {
             public static final String UUID = "uuid";
             public static final String TITLE = "title";
             public static final String DATE = "date";
+            public static final String FAVORITE = "favorite";
+
         }
     }
 }
