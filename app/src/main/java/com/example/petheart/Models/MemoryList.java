@@ -98,6 +98,7 @@ public class MemoryList {
         values.put(MemoryDbSchema.MemoryTable.Cols.TITLE, memory.getTitle());
         values.put(MemoryDbSchema.MemoryTable.Cols.DATE, memory.getDate().getTime());
         values.put(MemoryDbSchema.MemoryTable.Cols.FAVORITE, memory.isFavorite() ? 1 : 0);
+        values.put(MemoryDbSchema.MemoryTable.Cols.DESCRIPTION, memory.getDescription());
 
         return values;
     }

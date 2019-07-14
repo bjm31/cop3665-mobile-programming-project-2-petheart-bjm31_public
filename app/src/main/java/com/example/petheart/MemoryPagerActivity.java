@@ -54,7 +54,6 @@ public class MemoryPagerActivity extends AppCompatActivity {
         });
 
         for(int i = 0; i < mMemories.size(); ++i) {
-
             if(mMemories.get(i).getId().equals(memoryId)) {
                 mViewPager.setCurrentItem(i);
                 break;

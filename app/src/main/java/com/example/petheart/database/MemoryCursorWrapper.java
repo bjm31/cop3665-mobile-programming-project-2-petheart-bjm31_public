@@ -20,11 +20,13 @@ public class MemoryCursorWrapper extends CursorWrapper {
         String title = getString(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.TITLE));
         long date = getLong(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.DATE));
         int isFavorite = getInt(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.FAVORITE));
+        String description = getString(getColumnIndex(MemoryDbSchema.MemoryTable.Cols.DESCRIPTION));
 
         Memory memory = new Memory(UUID.fromString(uuidString));
         memory.setTitle(title);
         memory.setDate(new Date(date));
         memory.setFavorite(isFavorite != 0);
+        memory.setDescription(description);
 
         return memory;
     }

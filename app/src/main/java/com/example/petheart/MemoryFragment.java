@@ -42,6 +42,7 @@ public class MemoryFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private Switch mFavoriteSwitch;
+    private EditText mDescriptionField;
 
     public static MemoryFragment newInstance(UUID memoryID)
     {
@@ -103,6 +104,21 @@ public class MemoryFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 mMemory.setFavorite(b);
             }
+        });
+
+        mDescriptionField = v.findViewById(R.id.memory_description);
+        mDescriptionField.setText(mMemory.getTitle());
+        mDescriptionField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mMemory.setDescription(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
         });
 
         return v;
