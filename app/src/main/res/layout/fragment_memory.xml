@@ -18,11 +18,11 @@
         android:layout_height="wrap_content"
         android:text="@string/memory_title_label"/>
 
-    <Switch
-        android:id="@+id/memory_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/memory_favorite_label"/>
+        <Switch
+            android:id="@+id/memory_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/memory_favorite_label" />
     </LinearLayout>
 
     <EditText
@@ -41,5 +41,17 @@
         android:id="@+id/memory_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/memory_description_label"/>
+
+    <EditText
+        android:id="@+id/memory_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/memory_description_hint"/>
 
 </LinearLayout>

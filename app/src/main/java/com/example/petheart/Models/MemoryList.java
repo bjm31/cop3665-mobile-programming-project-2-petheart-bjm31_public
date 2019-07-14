@@ -21,7 +21,7 @@ public class MemoryList {
 
     public static MemoryList get(Context context) {
         if(sMemoryList == null) {
-                sMemoryList = new MemoryList(context);
+            sMemoryList = new MemoryList(context);
         }
 
         return sMemoryList;
@@ -33,11 +33,14 @@ public class MemoryList {
     }
 
     public List<Memory> getMemories() {
+
         List<Memory> memories = new ArrayList<>();
         MemoryCursorWrapper cursor = queryMemories(null, null);
 
         try {
+
             cursor.moveToFirst();
+
             while(!cursor.isAfterLast()) {
                 memories.add(cursor.getMemory());
                 cursor.moveToNext();
@@ -94,6 +97,7 @@ public class MemoryList {
         values.put(MemoryDbSchema.MemoryTable.Cols.UUID, memory.getId().toString());
         values.put(MemoryDbSchema.MemoryTable.Cols.TITLE, memory.getTitle());
         values.put(MemoryDbSchema.MemoryTable.Cols.DATE, memory.getDate().getTime());
+        values.put(MemoryDbSchema.MemoryTable.Cols.FAVORITE, memory.isFavorite() ? 1 : 0);
 
         return values;
     }

@@ -41,8 +41,8 @@ public class MemoryListFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.memory_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.memory_date);
 
-            //--Adjust ToggleButton
-            //mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
+            //--Adjust Switch
+            mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
         }
 
         public void bind(Memory memory) {
@@ -106,6 +106,7 @@ public class MemoryListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_memory_list, container, false);
         mMemoryRecyclerView = (RecyclerView) v.findViewById(R.id.memory_recycler_view);
         mMemoryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -116,17 +117,16 @@ public class MemoryListFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
-    {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_memory_list, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch(item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
             case R.id.new_memory:
                 Memory memory = new Memory();
                 MemoryList.get(getActivity()).addMemory(memory);

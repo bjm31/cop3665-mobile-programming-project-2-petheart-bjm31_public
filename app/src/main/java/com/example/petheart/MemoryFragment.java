@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -120,6 +121,13 @@ public class MemoryFragment extends Fragment {
                 MemoryList.get(getActivity()).deleteMemory(mMemory);
                 getActivity().finish();
                 return true;
+
+            case R.id.send_memory:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_TEXT, getMemoryDetails());
+                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.memory_details_subject));
+                startActivity(i);
             default:
                 return false;
         }
@@ -146,5 +154,15 @@ public class MemoryFragment extends Fragment {
 
     private void updateDate() {
         mDateButton.setText(mMemory.getDate().toString());
+    }
+
+    private String getMemoryDetails() {
+
+        String dateFormat = "EEE, MMM dd";
+        String dateString = DateFormat.format(dateFormat, mMemory.getDate()).toString();
+
+        String details = getString(R.string.memory_details, mMemory.getTitle(), dateString, mMemory.getDescription());
+
+        return details;
     }
 }

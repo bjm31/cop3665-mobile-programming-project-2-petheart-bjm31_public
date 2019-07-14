@@ -20,7 +20,8 @@ public class MemoryBaseHelper extends SQLiteOpenHelper {
                 "(" + " _id integer primary key autoincrement, " +
                 MemoryDbSchema.MemoryTable.Cols.UUID + ", " +
                 MemoryDbSchema.MemoryTable.Cols.TITLE + ", " +
-                MemoryDbSchema.MemoryTable.Cols.DATE + ")");
+                MemoryDbSchema.MemoryTable.Cols.DATE + ", " +
+                MemoryDbSchema.MemoryTable.Cols.FAVORITE + ")");
     }
 
     @Override

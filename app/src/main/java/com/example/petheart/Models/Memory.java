@@ -10,12 +10,14 @@ public class Memory {
     private String mTitle;
     private Date mDate;
     private boolean mFavorite;
+    private String mDescription;
 
     public Memory() {
         this(UUID.randomUUID());
     }
 
     public Memory(UUID id) {
+
         mId = id;
         mDate = new Date();
     }
@@ -46,5 +48,13 @@ public class Memory {
 
     public void setFavorite(boolean favorite) {
         mFavorite = favorite;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
     }
 }
