@@ -32,6 +32,7 @@ public class MemoryListFragment extends Fragment {
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private ImageView mMemoryFavorite;
+        private TextView mMemoryDescription;
 
         public MemoryHolder(LayoutInflater inflater, ViewGroup parent) {
 
@@ -43,6 +44,8 @@ public class MemoryListFragment extends Fragment {
 
             //--Adjust Switch
             mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
+
+            mMemoryDescription = (TextView) itemView.findViewById(R.id.memory_description);
         }
 
         public void bind(Memory memory) {
@@ -51,6 +54,7 @@ public class MemoryListFragment extends Fragment {
             mTitleTextView.setText(mMemory.getTitle());
             mDateTextView.setText(mMemory.getDate().toString());
             mMemoryFavorite.setVisibility(memory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
+            mMemoryDescription.setText(mMemory.getDescription());
         }
 
         @Override

@@ -143,6 +143,7 @@ public class MemoryFragment extends Fragment {
                 i.setType("text/plain");
                 i.putExtra(Intent.EXTRA_TEXT, getMemoryDetails());
                 i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.memory_details_subject));
+                i = Intent.createChooser(i, getString(R.string.send_details));
                 startActivity(i);
             default:
                 return false;

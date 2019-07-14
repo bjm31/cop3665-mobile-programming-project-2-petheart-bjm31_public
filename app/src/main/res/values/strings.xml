@@ -10,14 +10,11 @@
     <string name="new_memory">New Memory</string>
     <string name="delete_memory">Delete Memory</string>
 
-    Remember %1s! It happened on %2s. Remember %3s!
-    (the first item is the title, the second is the date, and the last is the description).
-
     <string name="memory_details_text">Send Memory Details</string>
     <string name="memory_details">Remember %1s!
         It happened on %2s. Remember %3s!
     </string>
     <string name="memory_details_subject">PetHeart Memory Details</string>
 
-    <string name="send_memory">Send Memory Details</string>
+    <string name="send_details">Send Memory Details</string>
 </resources>
