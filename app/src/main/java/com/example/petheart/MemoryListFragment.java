@@ -32,7 +32,7 @@ public class MemoryListFragment extends Fragment {
         private Memory mMemory;
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        private Switch mMemoryFavorite;
+        private ImageView mMemoryFavorite;
         private TextView mMemoryDescription;
 
         public MemoryHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -42,10 +42,7 @@ public class MemoryListFragment extends Fragment {
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.memory_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.memory_date);
-
-            //--Adjust Switch
-            mMemoryFavorite = (Switch) itemView.findViewById(R.id.memory_favorite);
-
+            mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
             mMemoryDescription = (TextView) itemView.findViewById(R.id.memory_description);
         }
 
@@ -54,13 +51,7 @@ public class MemoryListFragment extends Fragment {
             mMemory = memory;
             mTitleTextView.setText(mMemory.getTitle());
             mDateTextView.setText(mMemory.getDate().toString());
-            mMemoryFavorite.setVisibility(memory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
-            if (memory.isFavorite()) {
-                mMemoryFavorite.getTextOn();
-            }
-            else {
-                mMemoryFavorite.getTextOff();
-            }
+            mMemoryFavorite.setVisibility(mMemory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
             mMemoryDescription.setText(mMemory.getDescription());
         }
 
@@ -73,10 +64,10 @@ public class MemoryListFragment extends Fragment {
 
     private class MemoryAdapter extends RecyclerView.Adapter<MemoryHolder> {
 
-        private List<Memory> mMemory;
+        private List<Memory> mMemories;
 
         public MemoryAdapter(List<Memory> memories) {
-            mMemory = memories;
+            mMemories = memories;
         }
 
         @NonNull
@@ -88,19 +79,19 @@ public class MemoryListFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MemoryHolder memoryHolder, int i) {
-            Memory memory = mMemory.get(i);
+        public void onBindViewHolder(@NonNull MemoryHolder memoryHolder, int position) {
+            Memory memory = mMemories.get(position);
             Log.d("adapter", "Binding");
             memoryHolder.bind(memory);
         }
 
         public void setMemories(List<Memory> memories){
-            mMemory = memories;
+            mMemories = memories;
         }
 
         @Override
         public int getItemCount() {
-            return mMemory.size();
+            return mMemories.size();
         }
     }
 
@@ -143,6 +134,10 @@ public class MemoryListFragment extends Fragment {
                 MemoryList.get(getActivity()).addMemory(memory);
                 Intent intent = MemoryPagerActivity.newIntent(getActivity(), memory.getId());
                 startActivity(intent);
+                return true;
+            case R.id.favorites_memories:
+                return true;
+            case R.id.default_memories:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -1,46 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/crime_photo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="center"
-        android:cropToPadding="true"
-        android:background="@android:color/darker_gray"/>
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="240dp"
+        android:id="@+id/memory_photo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/darker_gray"
+        android:cropToPadding="true"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="80dp"
+        tools:layout_conversion_absoluteWidth="80dp"
+        tools:layout_conversion_wrapHeight="0"
+        tools:layout_conversion_wrapWidth="0"
+        tools:srcCompat="@android:drawable/gallery_thumb" />
 
-        <TextView
-            android:id="@id/memory_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crime Title"
-            android:paddingBottom="12dp"/>
 
-        <TextView
-            android:id="@id/memory_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crime Date"
-            android:paddingBottom="12dp"/>
-    </LinearLayout>
+    <TextView
+        android:id="@id/memory_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/memory_date"
+        app:layout_constraintEnd_toStartOf="@+id/memory_favorite"
+        app:layout_constraintStart_toEndOf="@+id/memory_photo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="31dp"
+        tools:layout_conversion_absoluteWidth="220dp"
+        tools:layout_conversion_wrapHeight="82"
+        tools:layout_conversion_wrapWidth="0" />
+
+    <TextView
+        android:id="@id/memory_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/memory_favorite"
+        app:layout_constraintStart_toEndOf="@+id/memory_photo"
+        app:layout_constraintTop_toBottomOf="@+id/memory_title"
+        tools:layout_conversion_absoluteHeight="31dp"
+        tools:layout_conversion_absoluteWidth="220dp"
+        tools:layout_conversion_wrapHeight="82"
+        tools:layout_conversion_wrapWidth="0" />
+
     <ImageView
         android:id="@+id/memory_favorite"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:cropToPadding="true"
         android:icon="@drawable/ic_menu_favorites"
-        android:visibility="invisible"/>
+        android:scaleType="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="80dp"
+        tools:layout_conversion_absoluteWidth="80dp"
+        tools:layout_conversion_wrapHeight="0"
+        tools:layout_conversion_wrapWidth="0"
+        tools:srcCompat="@drawable/ic_menu_favorites" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

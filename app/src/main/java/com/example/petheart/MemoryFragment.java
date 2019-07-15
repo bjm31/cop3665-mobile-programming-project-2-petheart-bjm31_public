@@ -144,7 +144,7 @@ public class MemoryFragment extends Fragment {
         mPhotoView = (ImageView) v.findViewById(R.id.memory_photo);
 
         mDescriptionField = v.findViewById(R.id.memory_description);
-        mDescriptionField.setText(mMemory.getTitle());
+        mDescriptionField.setText(mMemory.getDescription());
         mDescriptionField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -174,7 +174,6 @@ public class MemoryFragment extends Fragment {
                 MemoryList.get(getActivity()).deleteMemory(mMemory);
                 getActivity().finish();
                 return true;
-
             case R.id.send_memory:
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
@@ -202,7 +201,6 @@ public class MemoryFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         MemoryList.get(getActivity()).updateMemory(mMemory);
     }
 
