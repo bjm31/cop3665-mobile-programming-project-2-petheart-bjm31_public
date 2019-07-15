@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -34,6 +36,7 @@ import android.widget.ToggleButton;
 
 import com.example.petheart.Models.Memory;
 import com.example.petheart.Models.MemoryList;
+import com.example.petheart.utils.PictureUtils;
 
 import java.io.File;
 import java.util.Date;
@@ -82,7 +85,6 @@ public class MemoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        //Turn into ScrollView
         View v = inflater.inflate(R.layout.fragment_memory, container, false);
 
         mTitleField = v.findViewById(R.id.memory_title);
@@ -144,6 +146,14 @@ public class MemoryFragment extends Fragment {
         });
 
         mPhotoView = (ImageView) v.findViewById(R.id.memory_photo);
+        ViewTreeObserver observer = mPhotoView.getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+                updatePhotoView();
+            }
+        });
 
         mDescriptionField = v.findViewById(R.id.memory_description);
         mDescriptionField.setText(mMemory.getDescription());
@@ -198,6 +208,12 @@ public class MemoryFragment extends Fragment {
             mMemory.setDate(date);
             updateDate();
         }
+        else if (requestCode == REQUEST_PHOTO)
+        {
+            Uri uri = FileProvider.getUriForFile(getActivity(), "petheart.fileprovider", mPhotoFile);
+            getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            updatePhotoView();
+        }
     }
 
     @Override
@@ -218,5 +234,18 @@ public class MemoryFragment extends Fragment {
         String details = getString(R.string.memory_details, mMemory.getTitle(), dateString, mMemory.getDescription());
 
         return details;
+    }
+
+    private void updatePhotoView()
+    {
+        if (mPhotoView == null || !mPhotoFile.exists())
+        {
+            mPhotoView.setImageDrawable(null);
+        }
+        else
+        {
+            Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), mPhotoView.getMeasuredWidth(), mPhotoView.getMeasuredHeight());
+            mPhotoView.setImageBitmap(bitmap);
+        }
     }
 }
