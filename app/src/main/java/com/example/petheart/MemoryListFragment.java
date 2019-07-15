@@ -122,7 +122,7 @@ public class MemoryListFragment extends Fragment {
             mMemory = memory;
             mTitleTextView.setText(mMemory.getTitle());
             mDateTextView.setText(mMemory.getDate().toString());
-            mMemoryFavorite.setVisibility(mMemory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
+            mMemoryFavorite.setVisibility(memory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
             mMemoryDescription.setText(mMemory.getDescription());
         }
 

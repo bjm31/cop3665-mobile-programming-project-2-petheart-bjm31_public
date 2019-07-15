@@ -121,10 +121,12 @@ public class MemoryFragment extends Fragment {
             }
         });
 
+        PackageManager packageManager = getActivity().getPackageManager();
+
         mPhotoButton = (ImageButton) v.findViewById(R.id.memory_camera);
         final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
-        //mPhotoButton.setEnabled(canTakePhoto);
+        boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
+        mPhotoButton.setEnabled(canTakePhoto);
         mPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
