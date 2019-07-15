@@ -54,6 +54,26 @@ public class MemoryList {
         return memories;
     }
 
+    public List<Memory> getFavorites() {
+        List<Memory> favorites = new ArrayList<>();
+        MemoryCursorWrapper cursor = queryMemories(null, null);
+
+        try {
+
+            cursor.moveToFirst();
+
+            while(!cursor.isAfterLast()) {
+                favorites.add(cursor.getMemory());
+                cursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+
+        return favorites;
+    }
+
     public void addMemory(Memory m) {
         ContentValues values = getContentValues(m);
         mDatabase.insert(MemoryDbSchema.MemoryTable.NAME, null, values);
