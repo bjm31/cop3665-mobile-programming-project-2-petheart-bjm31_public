@@ -27,74 +27,6 @@ import java.util.List;
 
 public class MemoryListFragment extends Fragment {
 
-    private class MemoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        private Memory mMemory;
-        private TextView mTitleTextView;
-        private TextView mDateTextView;
-        private ImageView mMemoryFavorite;
-        private TextView mMemoryDescription;
-
-        public MemoryHolder(LayoutInflater inflater, ViewGroup parent) {
-
-            super(inflater.inflate(R.layout.list_item_memory, parent, false));
-            itemView.setOnClickListener(this);
-
-            mTitleTextView = (TextView) itemView.findViewById(R.id.memory_title);
-            mDateTextView = (TextView) itemView.findViewById(R.id.memory_date);
-            mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
-            mMemoryDescription = (TextView) itemView.findViewById(R.id.memory_description);
-        }
-
-        public void bind(Memory memory) {
-
-            mMemory = memory;
-            mTitleTextView.setText(mMemory.getTitle());
-            mDateTextView.setText(mMemory.getDate().toString());
-            mMemoryFavorite.setVisibility(mMemory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
-            mMemoryDescription.setText(mMemory.getDescription());
-        }
-
-        @Override
-        public void onClick(View view) {
-            Intent intent = MemoryPagerActivity.newIntent(getActivity(), mMemory.getId());
-            startActivity(intent);
-        }
-    }
-
-    private class MemoryAdapter extends RecyclerView.Adapter<MemoryHolder> {
-
-        private List<Memory> mMemories;
-
-        public MemoryAdapter(List<Memory> memories) {
-            mMemories = memories;
-        }
-
-        @NonNull
-        @Override
-        public MemoryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            Log.d("adapter", "Creating");
-            return new MemoryHolder(layoutInflater, parent);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull MemoryHolder memoryHolder, int position) {
-            Memory memory = mMemories.get(position);
-            Log.d("adapter", "Binding");
-            memoryHolder.bind(memory);
-        }
-
-        public void setMemories(List<Memory> memories){
-            mMemories = memories;
-        }
-
-        @Override
-        public int getItemCount() {
-            return mMemories.size();
-        }
-    }
-
     private RecyclerView mMemoryRecyclerView;
     private MemoryAdapter mAdapter;
 
@@ -164,4 +96,74 @@ public class MemoryListFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         }
     }
+
+
+    private class MemoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private Memory mMemory;
+        private TextView mTitleTextView;
+        private TextView mDateTextView;
+        private ImageView mMemoryFavorite;
+        private TextView mMemoryDescription;
+
+        public MemoryHolder(LayoutInflater inflater, ViewGroup parent) {
+
+            super(inflater.inflate(R.layout.list_item_memory, parent, false));
+            itemView.setOnClickListener(this);
+
+            mTitleTextView = (TextView) itemView.findViewById(R.id.memory_title);
+            mDateTextView = (TextView) itemView.findViewById(R.id.memory_date);
+            mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
+            mMemoryDescription = (TextView) itemView.findViewById(R.id.memory_description);
+        }
+
+        public void bind(Memory memory) {
+
+            mMemory = memory;
+            mTitleTextView.setText(mMemory.getTitle());
+            mDateTextView.setText(mMemory.getDate().toString());
+            mMemoryFavorite.setVisibility(mMemory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
+            mMemoryDescription.setText(mMemory.getDescription());
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = MemoryPagerActivity.newIntent(getActivity(), mMemory.getId());
+            startActivity(intent);
+        }
+    }
+
+    private class MemoryAdapter extends RecyclerView.Adapter<MemoryHolder> {
+
+        private List<Memory> mMemories;
+
+        public MemoryAdapter(List<Memory> memories) {
+            mMemories = memories;
+        }
+
+        @NonNull
+        @Override
+        public MemoryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            Log.d("adapter", "Creating");
+            return new MemoryHolder(layoutInflater, parent);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MemoryHolder memoryHolder, int position) {
+            Memory memory = mMemories.get(position);
+            Log.d("adapter", "Binding");
+            memoryHolder.bind(memory);
+        }
+
+        public void setMemories(List<Memory> memories){
+            mMemories = memories;
+        }
+
+        @Override
+        public int getItemCount() {
+            return mMemories.size();
+        }
+    }
+
 }
