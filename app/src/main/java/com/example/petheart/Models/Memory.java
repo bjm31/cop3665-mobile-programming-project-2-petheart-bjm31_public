@@ -57,4 +57,8 @@ public class Memory {
     public void setDescription(String description) {
         mDescription = description;
     }
+
+    public String getPhotoFilename() {
+        return "IMG_" + getId().toString() + ".jpg";
+    }
 }

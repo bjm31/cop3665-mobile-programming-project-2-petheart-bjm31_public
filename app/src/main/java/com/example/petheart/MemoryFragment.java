@@ -3,12 +3,17 @@ package com.example.petheart;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
@@ -21,6 +26,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.ToggleButton;
@@ -28,7 +35,9 @@ import android.widget.ToggleButton;
 import com.example.petheart.Models.Memory;
 import com.example.petheart.Models.MemoryList;
 
+import java.io.File;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -37,11 +46,16 @@ public class MemoryFragment extends Fragment {
     private static final String ARG_MEMORY_ID = "memory_id";
     private static final String DIALOG_DATE = "dialog_date";
     private static final int REQUEST_DATE = 0;
+    private static final int REQUEST_PHOTO = 1;
 
     private Memory mMemory;
+    private File mPhotoFile;
+
     private EditText mTitleField;
     private Button mDateButton;
     private Switch mFavoriteSwitch;
+    private ImageButton mPhotoButton;
+    private ImageView mPhotoView;
     private EditText mDescriptionField;
 
     public static MemoryFragment newInstance(UUID memoryID)
@@ -59,6 +73,7 @@ public class MemoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID memoryId = (UUID) getArguments().getSerializable(ARG_MEMORY_ID);
         mMemory = MemoryList.get(getActivity()).getMemory(memoryId);
+        mPhotoFile = MemoryList.get(getActivity()).getPhotoFile(mMemory);
 
         setHasOptionsMenu(true);
     }
@@ -105,6 +120,28 @@ public class MemoryFragment extends Fragment {
                 mMemory.setFavorite(b);
             }
         });
+
+        mPhotoButton = (ImageButton) v.findViewById(R.id.memory_camera);
+        final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
+        //mPhotoButton.setEnabled(canTakePhoto);
+        mPhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = FileProvider.getUriForFile(getActivity(), "petheart.fileprovider", mPhotoFile);
+                captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+                List<ResolveInfo> cameraActivities = getActivity().getPackageManager().queryIntentActivities(captureImage, PackageManager.MATCH_DEFAULT_ONLY);
+
+                for (ResolveInfo activity : cameraActivities) {
+                    getActivity().grantUriPermission(activity.activityInfo.packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                }
+
+                startActivityForResult(captureImage, REQUEST_PHOTO);
+            }
+        });
+
+        mPhotoView = (ImageView) v.findViewById(R.id.memory_photo);
 
         mDescriptionField = v.findViewById(R.id.memory_description);
         mDescriptionField.setText(mMemory.getTitle());

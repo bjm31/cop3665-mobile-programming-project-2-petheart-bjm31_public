@@ -9,4 +9,16 @@
         android:title="@string/new_memory"
         app:showAsAction="ifRoom|withText" />
 
+    <item
+        android:id="@+id/favorites_memories"
+        android:icon="@drawable/ic_menu_favorites"
+        android:title="@string/new_memory"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/default_memories"
+        android:icon="@drawable/ic_menu_default"
+        android:title="@string/new_memory"
+        app:showAsAction="ifRoom|withText" />
+
 </menu>

@@ -9,6 +9,7 @@ import com.example.petheart.database.MemoryBaseHelper;
 import com.example.petheart.database.MemoryCursorWrapper;
 import com.example.petheart.database.MemoryDbSchema;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -113,6 +114,11 @@ public class MemoryList {
                 null);
 
         return new MemoryCursorWrapper(cursor);
+    }
+
+    public File getPhotoFile(Memory memory) {
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir, memory.getPhotoFilename());
     }
 }
 

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,7 @@ public class MemoryListFragment extends Fragment {
         private Memory mMemory;
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        private ImageView mMemoryFavorite;
+        private Switch mMemoryFavorite;
         private TextView mMemoryDescription;
 
         public MemoryHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -43,7 +44,7 @@ public class MemoryListFragment extends Fragment {
             mDateTextView = (TextView) itemView.findViewById(R.id.memory_date);
 
             //--Adjust Switch
-            mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
+            mMemoryFavorite = (Switch) itemView.findViewById(R.id.memory_favorite);
 
             mMemoryDescription = (TextView) itemView.findViewById(R.id.memory_description);
         }
@@ -54,6 +55,12 @@ public class MemoryListFragment extends Fragment {
             mTitleTextView.setText(mMemory.getTitle());
             mDateTextView.setText(mMemory.getDate().toString());
             mMemoryFavorite.setVisibility(memory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
+            if (memory.isFavorite()) {
+                mMemoryFavorite.getTextOn();
+            }
+            else {
+                mMemoryFavorite.getTextOff();
+            }
             mMemoryDescription.setText(mMemory.getDescription());
         }
 
