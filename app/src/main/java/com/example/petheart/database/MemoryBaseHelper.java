@@ -22,7 +22,7 @@ public class MemoryBaseHelper extends SQLiteOpenHelper {
                 MemoryDbSchema.MemoryTable.Cols.TITLE + ", " +
                 MemoryDbSchema.MemoryTable.Cols.DATE + ", " +
                 MemoryDbSchema.MemoryTable.Cols.FAVORITE + ", " +
-                MemoryDbSchema.MemoryTable.Cols.DESCRIPTION + ")");
+                MemoryDbSchema.MemoryTable.Cols.DESCRIPTION + ")" + "");
     }
 
     @Override

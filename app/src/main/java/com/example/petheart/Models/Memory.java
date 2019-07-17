@@ -17,7 +17,6 @@ public class Memory {
     }
 
     public Memory(UUID id) {
-
         mId = id;
         mDate = new Date();
     }

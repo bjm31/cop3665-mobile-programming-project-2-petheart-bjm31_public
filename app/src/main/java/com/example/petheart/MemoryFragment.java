@@ -208,8 +208,7 @@ public class MemoryFragment extends Fragment {
             mMemory.setDate(date);
             updateDate();
         }
-        else if (requestCode == REQUEST_PHOTO)
-        {
+        else if (requestCode == REQUEST_PHOTO) {
             Uri uri = FileProvider.getUriForFile(getActivity(), "petheart.fileprovider", mPhotoFile);
             getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             updatePhotoView();
@@ -236,14 +235,11 @@ public class MemoryFragment extends Fragment {
         return details;
     }
 
-    private void updatePhotoView()
-    {
-        if (mPhotoView == null || !mPhotoFile.exists())
-        {
+    private void updatePhotoView() {
+        if (mPhotoView == null || !mPhotoFile.exists()) {
             mPhotoView.setImageDrawable(null);
         }
-        else
-        {
+        else {
             Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), mPhotoView.getMeasuredWidth(), mPhotoView.getMeasuredHeight());
             mPhotoView.setImageBitmap(bitmap);
         }

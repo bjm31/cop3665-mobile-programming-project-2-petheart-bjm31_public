@@ -136,6 +136,18 @@ public class MemoryList {
         return new MemoryCursorWrapper(cursor);
     }
 
+    private MemoryCursorWrapper queryFavoriteMemories(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(MemoryDbSchema.MemoryTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null);
+
+        return new MemoryCursorWrapper(cursor);
+    }
+
     public File getPhotoFile(Memory memory) {
         File filesDir = mContext.getFilesDir();
         return new File(filesDir, memory.getPhotoFilename());
