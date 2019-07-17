@@ -2,6 +2,7 @@ package com.example.petheart;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petheart.Models.Memory;
 import com.example.petheart.Models.MemoryList;
+import com.example.petheart.utils.PictureUtils;
 
 import java.util.List;
 
@@ -103,7 +105,7 @@ public class MemoryListFragment extends Fragment {
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private ImageView mMemoryFavorite;
-        private TextView mMemoryDescription;
+        private ImageView mMemoryPhoto;
 
         public MemoryHolder(LayoutInflater inflater, ViewGroup parent) {
 
@@ -113,7 +115,7 @@ public class MemoryListFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.memory_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.memory_date);
             mMemoryFavorite = (ImageView) itemView.findViewById(R.id.memory_favorite);
-            //mMemoryDescription = (TextView) itemView.findViewById(R.id.memory_description);
+            mMemoryPhoto = (ImageView) itemView.findViewById(R.id.memory_list_photo);
         }
 
         public void bind(Memory memory) {
@@ -122,7 +124,8 @@ public class MemoryListFragment extends Fragment {
             mTitleTextView.setText(mMemory.getTitle());
             mDateTextView.setText(mMemory.getDate().toString());
             mMemoryFavorite.setVisibility(memory.isFavorite() ? View.VISIBLE : View.INVISIBLE);
-            //mMemoryDescription.setText(mMemory.getDescription());
+            Bitmap bitmap = PictureUtils.getScaledBitmap(mMemory.getPhotoFilename(), mMemoryPhoto.getMeasuredWidth(), mMemoryPhoto.getMeasuredHeight());
+            mMemoryPhoto.setImageBitmap(bitmap);
         }
 
         @Override
